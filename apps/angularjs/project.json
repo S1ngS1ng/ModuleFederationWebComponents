@@ -1,0 +1,86 @@
+{
+  "projectType": "application",
+  "root": "apps/angularjs",
+  "sourceRoot": "apps/angularjs/src",
+  "prefix": "nx-migrate-angularjs",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:webpack",
+      "options": {
+        "outputPath": "dist/apps/angularjs",
+        "index": "apps/angularjs/src/index.html",
+        "main": "apps/angularjs/src/main.js",
+        "polyfills": "apps/angularjs/src/polyfills.ts",
+        "tsConfig": "apps/angularjs/tsconfig.app.json",
+        "assets": [
+          "apps/angularjs/src/favicon.ico",
+          "apps/angularjs/src/assets"
+        ],
+        "styles": ["apps/angularjs/src/styles.css"],
+        "scripts": [],
+        "webpackConfig": "apps/angularjs/webpack.config",
+        "buildLibsFromSource": true
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/angularjs/src/environments/environment.ts",
+              "with": "apps/angularjs/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "extractCss": true,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "options": {
+        "buildTarget": "angularjs:build",
+        "port": 4204
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "angularjs:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/angularjs/src/**/*.ts",
+          "apps/angularjs/src/**/*.html"
+        ]
+      },
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "main": "apps/angularjs/src/test.ts",
+        "tsConfig": "apps/angularjs/tsconfig.spec.json",
+        "karmaConfig": "apps/angularjs/karma.conf.js",
+        "polyfills": "apps/angularjs/src/polyfills.ts",
+        "styles": [],
+        "scripts": [],
+        "assets": []
+      }
+    }
+  },
+  "tags": []
+}

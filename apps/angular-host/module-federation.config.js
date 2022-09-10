@@ -3,5 +3,6 @@ module.exports = {
   remotes: [
     ['angular-module', 'http://localhost:4201/'],
     ['react-module', 'http://localhost:4203/remoteEntry.js'],
+    ['angularjs-module', 'http://localhost:4204'],
   ],
 };
